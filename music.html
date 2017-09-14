@@ -6,8 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src = "E://HTML5-Eclipse/jquery-3.2.1.js"></script>
+<style media="screen">
+img.cover{
+  width: 320px;
+  height: 320px;
+}
+audio.play{
+  width:320px;
+  background-size:cover;
+  color: #333300;
+}
+h1.title{
+  color: #FF33CC;
+}
+
+</style>
 </head>
-<body>
+<body background = "D://爬墙music/background.png">
   <script type="text/javascript">
     var log = console.log.bind(console)
     var e = function(sel){
@@ -22,7 +37,7 @@
     var musicTable = [
       "K男抒情曲.mp3",
       "Pretty Motherfucker Cypher.mp3",
-      "高山下的花环1.mp3",
+      "高山下的花环.mp3",
       "公路之光.mp3",
       "今夜还吹着风.mp3",
       "垃圾好比你的脸.mp3",
@@ -34,7 +49,20 @@
       "在宁静的水坑路.mp3",
       "长恨歌.mp3",
     ];
+
+    var musicImage = [
+      "他们说望了摇滚有问题.png",
+      "梅卡德尔.png",
+      "渺小.png",
+      "爆出口.png",
+      "大时代.png",
+    ];
+
+
     var i = 0;
+
+
+
     var nextMusic = function(){
       var a = e("music");
       i++;
@@ -46,14 +74,30 @@
         //log(name);
         var b = "歌名:"+name;
         a.innerHTML = b;
+        var idImage = e("id-cover");
+        if(name == "迷恋"){
+          idImage.src = path(musicImage[1]);
+        }
+        else if(name == "长恨歌"){
+          idImage.src = path(musicImage[4]);
+        }
+        else if(name == "Pretty Motherfucker Cypher"){
+          idImage.src = path(musicImage[3]);
+        }
+        else if(name == "你就不要想起我"){
+          idImage.src = path(musicImage[2]);
+        }
+        else{
+          idImage.src = path(musicImage[0]);
+        }
       }
-      musicName();
-
+      musicName()
     }
+
     var lastMusic = function(){
       var a = e("music");
       i--;
-      log(musicTable[i]);
+      //log(musicTable[i]);
       a.src = path(musicTable[i]);
       var musicName = function(){
         var a = e("musicName");
@@ -61,22 +105,44 @@
         //log(name);
         var b = "歌名:"+name;
         a.innerHTML = b;
+        var idImage = e("id-cover");
+        if(name == "迷恋"){
+          idImage.src = path(musicImage[1]);
+        }
+        else if(name == "长恨歌"){
+          idImage.src = path(musicImage[4]);
+        }
+        else if(name == "Pretty Motherfucker Cypher"){
+          idImage.src = path(musicImage[3]);
+        }
+        else if(name == "你就不要想起我"){
+          idImage.src = path(musicImage[2]);
+        }
+        else{
+          idImage.src = path(musicImage[0]);
+        }
       }
       musicName();
     }
 
+    var pause = function(){
+      var a = e("music");
+      a.pause();
+    }
+
   </script>
-<h1 id = "musicName">歌名:迷恋</h1>
+<h1 class ="title" id = "musicName">歌名:迷恋</h1>
 
 <div>
-  <audio id = "music" controls src="D://爬墙music/迷恋.mp3" autoplay >
+  <audio id = "music" controls src="D://爬墙music/迷恋.mp3" autoplay class = "play">
   </audio>
   <br>
-  <img src="D://爬墙music/a.png" >
+  <img class = "cover" src="D://爬墙music/梅卡德尔.png" id = "id-cover">
   <br>
   <ul>
-    <button type="button" name="button" onclick="lastMusic()">上一首</button>
-    <button type="button" name="button" onclick="nextMusic()" >下一首</button>
+    <button type="button" name="button" onclick="lastMusic()"><img src="E://music_player/learngit/img/last.png" alt=""></button>
+    <button id ="id-pause" type="button" name="button" onclick="pause()"><img id = "id-pause-img"src="E://music_player/learngit/img/pause.png" alt=""></button>
+    <button type="button" name="button" onclick="nextMusic()" ><img src="E://music_player/learngit/img/next.png" alt=""></button>
   </ul>
 <div>
 </body>
